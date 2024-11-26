@@ -30,7 +30,7 @@
             "image": "jaroslawsiemek/multi-nginx",
             "hostname": "nginx",
             "essential": true,
-            "portMappings":
+            "ports":
             [
                 {
                     "hostPort": "80",
