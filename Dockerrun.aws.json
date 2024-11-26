@@ -1,43 +1,37 @@
 {
-    "AWSEBDockerrunVersion": "1",
-
-
-    "containerDefinitions": 
-    [
+  "AWSEBDockerrunVersion": "1",
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "jaroslawsiemek/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "jaroslawsiemek/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "jaroslawsiemek/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "jaroslawsiemek/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
         {
-            "name": "client",
-            "image": "jaroslawsiemek/multi-client",
-            "hostname": "client",
-            "essential": false
-        },
-
-        {
-            "name": "server",
-            "image": "jaroslawsiemek/multi-server",
-            "hostname": "api",
-            "essential": false
-        },
-
-        {
-            "name": "worker",
-            "image": "jaroslawsiemek/multi-worker",
-            "hostname": "worker",
-            "essential": false
-        },
-
-        {
-            "name": "nginx",
-            "image": "jaroslawsiemek/multi-nginx",
-            "hostname": "nginx",
-            "essential": true,
-            "ports":
-            [
-                {
-                    "hostPort": "80",
-                    "containerPort": "80"
-                }
-            ],
-            "links": ["client", "server"]
+          "hostPort": 80,
+          "containerPort": 80
         }
-    ]
+      ],
+      "links": ["client", "server"]
+    }
+  ]
 }
+
